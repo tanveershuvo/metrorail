@@ -4,7 +4,9 @@ include_once("dbCon.php");
 $conn =connect();
 if(isset($_POST['search'])){
   $source = $_POST['source'];
+  $_SESSION['source'] = $_POST['source'];
   $des = $_POST['destination'];
+  $_SESSION['destination'] = $_POST['destination'];
 
   $_SESSION['time'] = $_POST['time'];
 
@@ -33,7 +35,7 @@ if(isset($_POST['search'])){
     var a =('.$a.'[i].ordering) - ('.$b.'[i].ordering1);
     if(a < 0){
       var kj = ('.$a.'[i].route);
-      window.location.href = "http://localhost/metrorail/index?width=" + kj;
+      window.location.href = "http://localhost/metrorail/index?query_id=" + kj;
     }
   }
   </script>';
@@ -46,7 +48,6 @@ if(isset($_POST['calculate'])){
   $_SESSION['destination'] = $_POST['destination'];
   header('Location:fareMeter');
 }
-
 
 
 ?>

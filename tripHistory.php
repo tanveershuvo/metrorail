@@ -17,23 +17,32 @@ $conn =connect();
                 <table class="table table-striped table-bordered add-manage-table">
                   <thead>
                     <tr>
-                      <th data-type="numeric">No</th>
+                      <th>No</th>
                       <th>Source Station</th>
                       <th>Destination Station</th>
-                      <th>Total KM</th>
-                      <th>Fare</th>
+                      <th>Time</th>
+                      <th>Amount</th>
+                      <th>Total Fare</th>
                       <th>Date</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td ></td>
-                      <td ></td>
-                      <td ></td>
-                      <td ></td>
-                      <td ></td>
-                      <td ></td>
+                    <?php
+                    $id = $_SESSION['id'];
+                     $sql = "SELECT * FROM trip_history WHERE user_id = '$id'";
+                     $result = $conn->query($sql);
+                     foreach ($result as $key => $value) {
+                     ?>
+                    <tr class = "text-center">
+                      <td><?=$key+1?></td>
+                      <td ><?=$value['source_station']?></td>
+                      <td ><?=$value['destination_station']?></td>
+                      <td ><?=$value['time']?></td>
+                      <td ><?=$value['amount']?></td>
+                      <td ><?=$value['total_fare']?></td>
+                      <td ><?=$value['date']?></td>
                     </tr>
+                  <?php } ?>
                   </tbody>
                 </table>
               </div>
